@@ -9,7 +9,7 @@ Sistema diseñado para la administración de turnos en una entidad gubernamental
 
 #### Registro
 - Permite la creación de un perfil de ciudadano junto con su usuario correspondiente para acceder a la aplicación.
-- Se evita el crear un ciudadano complicado al pedir el DNI al usuario
+- Se evita el crear un ciudadano duplicado al pedir el DNI al usuario
 
 #### Creación turno
 - Facilita la creación de turnos, permitiendo al usuario elegir la fecha, el trámite disponible en la base de datos y el ciudadano asociado.
