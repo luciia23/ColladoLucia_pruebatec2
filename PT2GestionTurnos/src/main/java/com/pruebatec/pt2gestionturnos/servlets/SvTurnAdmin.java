@@ -6,7 +6,7 @@ import com.pruebatec.pt2gestionturnos.logic.model.Procedure;
 import com.pruebatec.pt2gestionturnos.logic.model.Turn;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,39 +20,42 @@ public class SvTurnAdmin extends HttpServlet {
 
     Controller controller = new Controller();
 
+    /*Obtiene la lista de turnos según el filtro especificado.
+    Si no se especifica la fecha, se muestra un mensaje de error*/
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Turn> turnsList;
+        List<Turn> turnsList = new ArrayList<>();
         String dateParam = request.getParameter("dateFilter");
         String stateFilter = request.getParameter("state");
-        boolean condition = !"En Espera".equalsIgnoreCase(stateFilter); // Simplified condition based on stateFilter
+        boolean condition = !"En Espera".equalsIgnoreCase(stateFilter);
 
-        // Convert the procDateParam to a LocalDate object
         LocalDate dateFormatted = null;
         if (dateParam != null) {
             dateFormatted = controller.dateFormatter(dateParam);
         }
 
-        // Assuming controller methods to get filtered turns based on the conditions
-        if (dateFormatted != null) {
-            if (stateFilter != null) {
-                turnsList = controller.getTurnsByDateNCondition(dateFormatted, condition);
-            } else {
-                turnsList = controller.getTurnsByDate(dateFormatted);
-            }
+        String msg = null;
+        if (dateFormatted == null && stateFilter == null) {
+            turnsList = controller.getAllTurns();
+        } else if (dateFormatted != null && stateFilter == null) {
+            turnsList = controller.getTurnsByDate(dateFormatted);
+        } else if (dateFormatted != null && stateFilter != null) {
+            turnsList = controller.getTurnsByDateNCondition(dateFormatted, condition);
         } else {
-            if (stateFilter != null) {
-                turnsList = controller.getTurnsCondition(condition);
-            } else {
-                turnsList = controller.getAllTurns();
-            }
+            msg = "Selecciona la fecha";
         }
 
-        request.setAttribute("results", turnsList);
+        if (msg != null) {
+            request.setAttribute("error", msg);
+        } else {
+            request.setAttribute("results", turnsList);
+        }
+
         request.getRequestDispatcher("SvProcedure").forward(request, response);
     }
 
+    /*Crea un nuevo turno con el ciudadano seleccionado y la fecha y trámite especificados.*/
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

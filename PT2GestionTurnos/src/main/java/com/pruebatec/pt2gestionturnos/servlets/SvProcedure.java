@@ -13,6 +13,8 @@ public class SvProcedure extends HttpServlet {
 
     Controller controller = new Controller();
 
+    /* Obtiene todos los trámites y dirije al usuario a la página correspondiente 
+ * para crear un nuevo turno, dependiendo de su rol de usuario.*/
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -23,11 +25,6 @@ public class SvProcedure extends HttpServlet {
         } else if (role != null && role.equalsIgnoreCase("basic")) {
             request.getRequestDispatcher("createTurn.jsp").forward(request, response);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
     }
 
 }

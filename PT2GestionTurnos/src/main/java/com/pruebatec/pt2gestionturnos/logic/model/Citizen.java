@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 @Entity(name = "Ciudadano")
 @NamedQueries({
     @NamedQuery(name = "Citizen.findByDni", query = "SELECT c FROM Ciudadano c WHERE c.dni = :dni"),
-    @NamedQuery(name = "Citizen.findBySurname", query = "SELECT c FROM Ciudadano c WHERE c.surname = :surname")
+    @NamedQuery(name = "Citizen.findBySurname", query = "SELECT c FROM Ciudadano c WHERE c.surname = :surname AND c.user.role = 'Basic'")
 })
 public class Citizen implements Serializable {
 

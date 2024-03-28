@@ -62,9 +62,6 @@
                                             <hr>
                                         </form>
                                         <hr>
-                                        <div class="text-center">
-                                            <a class="small" href="register.jsp">¿Crear Cuenta?</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

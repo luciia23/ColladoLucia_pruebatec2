@@ -38,3 +38,12 @@ Para ejecutar este proyecto, necesitarás:
 - Se ha creado un **login** con dos posibles tipos de usuario (Admin / Usuario Básico).
 El **usuario básico** tiene acceso limitado para solicitar turnos y ver su historial.
 El **administrador** tiene privilegios adicionales, incluida la capacidad de crear nuevos turnos con cualquier ciudadano, modificar el estado de los turnos y agregar nuevos ciudadanos a la base de datos con sus respectivos usuarios.
+
+### LOGIN Y CONTRASEÑAS
+- Para poder entrar a la aplicación, se puede entrar con:
+    - *Usuario Básico*
+        - DNI: 12345678G
+        - Contraseña: 123
+    - *Admin*
+        - DNI: 87654321L
+        - Contraseña: 123

@@ -15,17 +15,14 @@ public class SvLogin extends HttpServlet {
 
     Controller controller = new Controller();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
+    /**
+     * Autentifica a un usuario mediante su DNI y
+     * contraseña.
+     * Si las credenciales son válidas, crea una sesión para el
+     * usuario y lo redirige a la página principal. 
+     * De lo contrario, redirige al
+     * usuario a una página de error de inicio de sesión.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,10 +42,4 @@ public class SvLogin extends HttpServlet {
             response.sendRedirect("loginError.jsp");
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
 }

@@ -13,11 +13,7 @@ public class SvTurnState extends HttpServlet {
 
     Controller controller = new Controller();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
+     /* Actualiza el estado de un turno según la acción del usuario*/
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -26,7 +22,7 @@ public class SvTurnState extends HttpServlet {
 
         if (state.equalsIgnoreCase("en espera")) {
             controller.updateTurn(idTurn, true);
-        } else if (state.equalsIgnoreCase("atendido")){
+        } else if (state.equalsIgnoreCase("atendido")) {
             controller.updateTurn(idTurn, false);
         }
         response.sendRedirect("SvProcedure");

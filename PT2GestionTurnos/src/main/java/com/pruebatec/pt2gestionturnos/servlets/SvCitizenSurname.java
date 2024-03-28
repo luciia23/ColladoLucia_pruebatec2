@@ -13,13 +13,15 @@ public class SvCitizenSurname extends HttpServlet {
 
     Controller controller = new Controller();
 
-    //Gets a list of citizens that match with the surname given
+    /**
+     * Busca una lista de ciudadanos que coincidan con el apellido
+     * proporcionado.
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String surname = request.getParameter("searchSurname");
         request.setAttribute("searchResults", controller.findCitizensSurname(surname));
-        //request.getRequestDispatcher("/createTurnAdmin.jsp").forward(request, response);
         request.getRequestDispatcher("/SvProcedure").forward(request, response);
     }
 

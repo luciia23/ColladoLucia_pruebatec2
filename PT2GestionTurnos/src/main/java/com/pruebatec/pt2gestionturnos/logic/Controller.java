@@ -10,20 +10,29 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Controller {
+
     PersistenceController pController = new PersistenceController();
 
     public void createCitizen(Citizen citizen) {
-       pController.createCitizen(citizen);
+        pController.createCitizen(citizen);
     }
 
     public void createUser(User user) {
-       pController.createUser(user);
+        pController.createUser(user);
     }
-    
-    public List<User> getUsers(){
+
+    public List<User> getUsers() {
         return pController.getUsers();
     }
 
+    /**
+     * Verifica si un usuario es válido mediante su DNI y contraseña.
+     *
+     * @param dni El número de identificación del ciudadano.
+     * @param paswd La contraseña proporcionada por el usuario.
+     * @return true si el usuario es válido y la contraseña coincide con la
+     * registrada, false en caso contrario.
+     */
     public boolean checkValidUser(String dni, String paswd) {
         List<User> users = getUsers();
         return users.stream().
@@ -40,7 +49,7 @@ public class Controller {
     }
 
     public void createProcedure(Procedure procedure) {
-       pController.createProcedure(procedure);
+        pController.createProcedure(procedure);
     }
 
     public List<Turn> getAllCitizenTurns(Citizen citizen) {
@@ -48,7 +57,7 @@ public class Controller {
     }
 
     public List<Procedure> findAllProcedures() {
-       return  pController.findAllProcedures();
+        return pController.findAllProcedures();
     }
 
     public Procedure findProcedure(Long idProcedure) {
@@ -62,13 +71,14 @@ public class Controller {
     public List<Turn> getAllTurns() {
         return pController.findAllTurns();
     }
-    
-        /**
-     * Método que dada una fecha pasada como string la formatea según el orden
-     * indicado y la devuelve como un tipo LocalDate
+
+    /**
+     * Convierte una cadena de texto en un objeto LocalDate según el formato
+     * especificado ("yyyy-MM-dd").
      *
-     * @param fechaString
-     * @return
+     * @param date String que representa la fecha en el formato "yyyy-MM-dd".
+     * @return Un objeto LocalDate que representa la fecha parseada, o null si
+     * la cadena de texto está vacía.
      */
     public LocalDate dateFormatter(String date) {
 
@@ -92,9 +102,16 @@ public class Controller {
         return pController.findTurnsByCondition(stateFilter);
     }
 
+    /**
+     * Actualiza el estado de un turno especificado por su id.
+     *
+     * @param idTurn El identificador del turno que se desea actualizar.
+     * @param state El nuevo estado del turno. true si el turno está siendo
+     * atendido, false si está en espera.
+     */
     public void updateTurn(Long idTurn, boolean state) {
         List<Turn> list = getAllTurns();
-        System.out.println("boolean:"+ state);
+        System.out.println("boolean:" + state);
         Turn turn = list.stream().filter(t -> t.getId().equals(idTurn)).findFirst().orElse(null);
         turn.setCondition(state);
         pController.updateTurn(turn);

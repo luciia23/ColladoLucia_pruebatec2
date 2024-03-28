@@ -15,7 +15,11 @@ public class SvCitizen extends HttpServlet {
 
     Controller controller = new Controller();
 
-    //Gets all the turns that belong to the user logged in
+    /**
+     * Obtiene todos los turnos asociados al ciudadano que ha iniciado sesión.
+     *
+     * Si la sesión no existe le redirije al login de vuelta
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,8 +35,6 @@ public class SvCitizen extends HttpServlet {
         } else {
             response.sendRedirect("login.jsp");
         }
-//        request.setAttribute("errorMessage", "You need to log in to access this page.");
-//request.getRequestDispatcher("error.jsp").forward(request, response);
 
     }
 

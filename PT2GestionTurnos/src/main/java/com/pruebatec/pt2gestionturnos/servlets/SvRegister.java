@@ -16,17 +16,7 @@ public class SvRegister extends HttpServlet {
 
     Controller controller = new Controller();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
+    /*Registra un nuevo ciudadano y un usuario a la bbdd, siempre y cuando el DNI no existe previamente en la bbdd*/
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,11 +47,6 @@ public class SvRegister extends HttpServlet {
             request.getRequestDispatcher("register.jsp").forward(request, response);
         }
 
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 
 }

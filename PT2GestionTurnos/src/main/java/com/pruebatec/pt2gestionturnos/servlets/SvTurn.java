@@ -18,7 +18,7 @@ public class SvTurn extends HttpServlet {
 
     Controller controller = new Controller();
 
-    //Creates a new Turn with the citizen logged in
+    /*Crea un nuevo turno con el ciudadano que ha iniciado sesión.*/
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
